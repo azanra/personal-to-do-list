@@ -17,7 +17,6 @@ function getUserInput() {
 
 function splitInput(inputStr) {
     let arrStr = inputStr.split(",");
-    console.log(arrStr);
     return arrStr;
 }
 
@@ -30,6 +29,11 @@ function assignInput(inputArr) {
     return taskObj;
 }
 
+function pushToArr(originalArr, arrItem) {
+    originalArr.push(arrItem);
+    return originalArr;
+}
+
 function main() {
 
     let userInputArr = (splitInput(getUserInput()));
@@ -37,6 +41,9 @@ function main() {
     
     const newTaskObj = assignInput(userInputArr);
     console.log(newTaskObj);
+
+    let taskArrObj = pushToArr(createArrayTask(),newTaskObj);
+    console.log(taskArrObj);
 }
 
 main();
