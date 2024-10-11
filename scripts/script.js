@@ -1,8 +1,3 @@
-function createArrayTask() {
-    let arrayTask = [];
-    return arrayTask;
-}
-
 function createObjTask(id, detail, status) {
     this.taskId = id;
     this.taskDetail = detail;
@@ -25,8 +20,7 @@ function assignInput(inputArr) {
     inputDetail = inputArr[1];
     inputStatus = inputArr[2];
     
-    const taskObj = new createObjTask(inputId, inputDetail, inputStatus);
-    return taskObj;
+    return new createObjTask(inputId, inputDetail, inputStatus); 
 }
 
 function pushToArr(originalArr, arrItem) {
@@ -34,16 +28,28 @@ function pushToArr(originalArr, arrItem) {
     return originalArr;
 }
 
-function main() {
+function getAmountOfTask() {
+    let taskAmount = prompt("Get the amount of task");
+    return taskAmount;
+}
 
+function loopAmountTask(amountInput) {
+    let arrObjTask = [];
+    for(let i = 0; i < amountInput; i++){
+        main(arrObjTask);
+    }
+}
+
+function main(arrObj) {
     let userInputArr = (splitInput(getUserInput()));
     console.log(userInputArr);
     
     const newTaskObj = assignInput(userInputArr);
     console.log(newTaskObj);
 
-    let taskArrObj = pushToArr(createArrayTask(),newTaskObj);
-    console.log(taskArrObj);
+    pushToArr(arrObj, newTaskObj);
+    console.log(arrObj);
+    console.log(arrObj.length);
 }
 
-main();
+loopAmountTask(getAmountOfTask());
