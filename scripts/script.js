@@ -45,6 +45,20 @@ function displayAllTask(inputArrObj) {
     });
 }
 
+function getTaskId() {
+    let inputTaskId = prompt("Input task id");
+    return inputTaskId;
+}
+
+function editStatus(inputId, arrObjInput) {
+    arrObjInput.forEach(element => {
+        if(element.taskId === inputId){
+            element.taskStatus = "done";
+        }
+    });
+    return arrObjInput;
+}
+
 function main(arrObj) {
     let userInputArr = (splitInput(getUserInput()));
     console.log(userInputArr);
@@ -52,10 +66,14 @@ function main(arrObj) {
     const newTaskObj = assignInput(userInputArr);
     console.log(newTaskObj);
 
-    console.log('log');
-    displayAllTask(pushToArr(arrObj, newTaskObj));
+    arrObj = pushToArr(arrObj, newTaskObj);
     console.log(arrObj.length);
 
+    displayAllTask(arrObj);
+
+    editStatus(getTaskId(), arrObj);
+
+    displayAllTask(arrObj);
 }
 
 loopAmountTask(getAmountOfTask());
