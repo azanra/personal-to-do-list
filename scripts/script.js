@@ -5,8 +5,7 @@ function createObjTask(id, detail, status) {
 }
 
 function getUserInput() {
-    let userInput = [];
-    userInput = prompt("Input in format: id,detail,status");
+    let userInput = prompt("Input in format: id,detail,status");
     return userInput;
 }
 
@@ -40,6 +39,12 @@ function loopAmountTask(amountInput) {
     }
 }
 
+function displayAllTask(inputArrObj) {
+    inputArrObj.forEach(element => {
+       return console.log(element);
+    });
+}
+
 function main(arrObj) {
     let userInputArr = (splitInput(getUserInput()));
     console.log(userInputArr);
@@ -47,9 +52,10 @@ function main(arrObj) {
     const newTaskObj = assignInput(userInputArr);
     console.log(newTaskObj);
 
-    pushToArr(arrObj, newTaskObj);
-    console.log(arrObj);
+    console.log('log');
+    displayAllTask(pushToArr(arrObj, newTaskObj));
     console.log(arrObj.length);
+
 }
 
 loopAmountTask(getAmountOfTask());
