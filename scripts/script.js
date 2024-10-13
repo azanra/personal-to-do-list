@@ -41,8 +41,9 @@ function loopAmountTask(amountInput) {
 
 function displayAllTask(inputArrObj) {
     inputArrObj.forEach(element => {
-       return console.log(element);
+        console.log(element);
     });
+    return inputArrObj;
 }
 
 function getTaskId() {
@@ -59,21 +60,28 @@ function editStatus(inputId, arrObjInput) {
     return arrObjInput;
 }
 
+
+function deleteTask(inputId, arrObjInput) {
+    arrObjInput.forEach((element, index) => {
+        if(element.taskId === inputId){
+            arrObjInput.splice(index, 1);
+        }
+    });
+    return arrObjInput;
+}
+
 function main(arrObj) {
     let userInputArr = (splitInput(getUserInput()));
-    console.log(userInputArr);
-    
+      
     const newTaskObj = assignInput(userInputArr);
-    console.log(newTaskObj);
-
     arrObj = pushToArr(arrObj, newTaskObj);
-    console.log(arrObj.length);
-
     displayAllTask(arrObj);
 
-    editStatus(getTaskId(), arrObj);
-
+    arrObj = editStatus(getTaskId(), arrObj);
     displayAllTask(arrObj);
+
+    const deletedArrObj = deleteTask(getTaskId(), arrObj);
+    displayAllTask(deletedArrObj);
 }
 
 loopAmountTask(getAmountOfTask());
