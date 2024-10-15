@@ -60,7 +60,6 @@ function editStatus(inputId, arrObjInput) {
     return arrObjInput;
 }
 
-
 function deleteTask(inputId, arrObjInput) {
     arrObjInput.forEach((element, index) => {
         if(element.taskId === inputId){
