@@ -69,18 +69,35 @@ function deleteTask(inputId, arrObjInput) {
     return arrObjInput;
 }
 
-function main(arrObj) {
-    let userInputArr = (splitInput(getUserInput()));
-      
-    const newTaskObj = assignInput(userInputArr);
-    arrObj = pushToArr(arrObj, newTaskObj);
-    displayAllTask(arrObj);
-
-    arrObj = editStatus(getTaskId(), arrObj);
-    displayAllTask(arrObj);
-
-    const deletedArrObj = deleteTask(getTaskId(), arrObj);
-    displayAllTask(deletedArrObj);
+function updateActivityText(content) {
+    const activityContainer = document.querySelector('.activity-container');
+    const activityText = document.querySelector('.activity-text');
+    activityText.textContent = content;
+    activityContainer.appendChild(activityText);
 }
 
-loopAmountTask(getAmountOfTask());
+function textCreateTask() {
+    textContent = "Create Task";
+    return textContent;
+}
+
+function textCreateTaskSuccessful() {
+    textContent = "Create Task is Successful";
+    return textContent;
+}
+
+function main(arrObj) {
+    // let userInputArr = (splitInput(getUserInput()));
+      
+    // const newTaskObj = assignInput(userInputArr);
+    // arrObj = pushToArr(arrObj, newTaskObj);
+    // displayAllTask(arrObj);
+
+    // arrObj = editStatus(getTaskId(), arrObj);
+    // displayAllTask(arrObj);
+
+    // const deletedArrObj = deleteTask(getTaskId(), arrObj);
+    // displayAllTask(deletedArrObj);
+}
+
+// loopAmountTask(getAmountOfTask());
