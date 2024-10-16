@@ -70,10 +70,10 @@ function deleteTask(inputId, arrObjInput) {
 }
 
 function updateActivityText(content) {
-    const activityContainer = document.querySelector('.activity-container');
-    const activityText = document.querySelector('.activity-text');
-    activityText.textContent = content;
-    activityContainer.appendChild(activityText);
+    const activityContainer = refActivityContainer();
+    const activityText = refActivityText();
+    setTextContent(activityText, content);
+    appendElement(activityContainer,activityText);
 }
 
 function textCreateTask() {
@@ -86,18 +86,24 @@ function textCreateTaskSuccessful() {
     return textContent;
 }
 
-function main(arrObj) {
-    // let userInputArr = (splitInput(getUserInput()));
-      
-    // const newTaskObj = assignInput(userInputArr);
-    // arrObj = pushToArr(arrObj, newTaskObj);
-    // displayAllTask(arrObj);
-
-    // arrObj = editStatus(getTaskId(), arrObj);
-    // displayAllTask(arrObj);
-
-    // const deletedArrObj = deleteTask(getTaskId(), arrObj);
-    // displayAllTask(deletedArrObj);
+function refActivityContainer() {
+    const activityContainer = document.querySelector('.activity-container');
+    return activityContainer;
 }
 
-// loopAmountTask(getAmountOfTask());
+function refActivityText() {
+    const activityText = document.querySelector('.activity-text');
+    return activityText;
+}
+
+function setTextContent(element, content) {
+    element.textContent = content;
+}
+
+function appendElement(parent, child){
+    parent.appendChild(child);
+}
+
+function main() {
+    
+}
