@@ -79,6 +79,7 @@ function createBtnClick() {
     createBtn.addEventListener("click", () => {
         updateActivityText(textCreateTask());
         createIdSubmission();
+        createDetailSubmission();
     });
 }
 
@@ -129,6 +130,15 @@ function createIdSubmission() {
     idInput.setAttribute('id', 'input-id');
     appendElement(refSubmitContainer(), idInputLabel);
     appendElement(refSubmitContainer(), idInput);
+}
+
+function createDetailSubmission() {
+    const detailInputLabel = document.createElement('label');
+    const detailInput = document.createElement('input');
+    setTextContent(detailInputLabel, "Detail");
+    detailInput.setAttribute('id','input-detail');
+    appendElement(refSubmitContainer(), detailInputLabel);
+    appendElement(refSubmitContainer(), detailInput);
 }
 
 function main() {
