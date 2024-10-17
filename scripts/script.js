@@ -69,6 +69,19 @@ function deleteTask(inputId, arrObjInput) {
     return arrObjInput;
 }
 
+function refCreateBTn() {
+    const createBtn = document.querySelector('#create-btn');
+    return createBtn;
+}
+
+function createBtnClick() {
+    const createBtn = refCreateBTn();
+    createBtn.addEventListener("click", () => {
+        updateActivityText(textCreateTask());
+        createIdSubmission();
+    });
+}
+
 function updateActivityText(content) {
     const activityContainer = refActivityContainer();
     const activityText = refActivityText();
@@ -114,14 +127,12 @@ function createIdSubmission() {
     const idInput = document.createElement('input');
     setTextContent(idInputLabel, "ID");
     idInput.setAttribute('id', 'input-id');
-}
-
-
-function createSubmissionElement() {
-    const submitContainer = refSubmitContainer();
-    return submitContainer;
+    appendElement(refSubmitContainer(), idInputLabel);
+    appendElement(refSubmitContainer(), idInput);
 }
 
 function main() {
-
+    createBtnClick();
 }
+
+main();
