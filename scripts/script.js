@@ -104,6 +104,24 @@ function appendElement(parent, child){
     parent.appendChild(child);
 }
 
+function refSubmitContainer() {
+    const submitContainer = document.querySelector('.submit-container');
+    return submitContainer;
+}
+
+function createIdSubmission() {
+    const idInputLabel = document.createElement('label');
+    const idInput = document.createElement('input');
+    setTextContent(idInputLabel, "ID");
+    idInput.setAttribute('id', 'input-id');
+}
+
+
+function createSubmissionElement() {
+    const submitContainer = refSubmitContainer();
+    return submitContainer;
+}
+
 function main() {
-    
+
 }
