@@ -81,6 +81,7 @@ function createBtnClick() {
         createIdSubmission();
         createDetailSubmission();
         createStatusSubmission();
+        createSubmitBtn();
     });
 }
 
@@ -156,6 +157,13 @@ function setMultipleAttribute(element, attribute) {
         element.setAttribute(key, attribute[key]);
     }
 } 
+
+function createSubmitBtn() {
+    const submitBtn = document.createElement('button');
+    setMultipleAttribute(submitBtn, {"id":"submit-btn", "type":"button"});
+    submitBtn.innerText = "Submit";
+    appendElement(refSubmitContainer(), submitBtn);
+}
 
 function main() {
     createBtnClick();
