@@ -80,6 +80,7 @@ function createBtnClick() {
         updateActivityText(textCreateTask());
         createIdSubmission();
         createDetailSubmission();
+        createStatusSubmission();
     });
 }
 
@@ -141,8 +142,17 @@ function createDetailSubmission() {
     appendElement(refSubmitContainer(), detailInput);
 }
 
+function createStatusSubmission() {
+    const statusInputLabel = document.createElement('label');
+    const statusInput = document.createElement('input');
+    setTextContent(statusInputLabel, "Status");
+    statusInput.setAttribute('id', 'input-status');
+    appendElement(refSubmitContainer(), statusInputLabel);
+    appendElement(refSubmitContainer(), statusInput);
+}
+
 function main() {
     createBtnClick();
 }
 
-main();
+main(); 
