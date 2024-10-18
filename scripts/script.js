@@ -151,6 +151,12 @@ function createStatusSubmission() {
     appendElement(refSubmitContainer(), statusInput);
 }
 
+function setMultipleAttribute(element, attribute) {
+    for(let key in attribute){
+        element.setAttribute(key, attribute[key]);
+    }
+} 
+
 function main() {
     createBtnClick();
 }
