@@ -4,20 +4,10 @@ function createObjTask(id, detail, status) {
     this.taskStatus = status;
 }
 
-function getUserInput() {
-    let userInput = prompt("Input in format: id,detail,status");
-    return userInput;
-}
-
-function splitInput(inputStr) {
-    let arrStr = inputStr.split(",");
-    return arrStr;
-}
-
-function assignInput(inputArr) {
-    inputId = inputArr[0];
-    inputDetail = inputArr[1];
-    inputStatus = inputArr[2];
+function assignInput(idInput, detailInput, statusInput) {
+    inputId = idInput;
+    inputDetail = detailInput;
+    inputStatus = statusInput;
     
     return new createObjTask(inputId, inputDetail, inputStatus); 
 }
@@ -163,6 +153,45 @@ function createSubmitBtn() {
     setMultipleAttribute(submitBtn, {"id":"submit-btn", "type":"button"});
     submitBtn.innerText = "Submit";
     appendElement(refSubmitContainer(), submitBtn);
+}
+
+function refSubmitBtn() {
+    const submitBtn = document.querySelector('#submit-btn');
+    return submitBtn;
+}
+
+function refInputId() {
+    const inputId = document.querySelector('#input-id');
+    return inputId;
+}
+
+function refInputDetail() {
+    const inputDetail = document.querySelector('#input-detait');
+    return inputDetail;
+}
+
+function refInputStatus() {
+    const inputStatus = document.querySelector('#input-status');
+    return inputStatus;
+}
+
+function submitBtnClick() {
+    const submitBtn = refSubmitBtn();
+    submitBtn.addEventListener("click", () => {
+        inputId = refInputId();
+        inputDetail= refInputDetail();
+        inputStatus = refInputStatus();
+        
+        inputId = getValueFromInput(inputId);
+        inputDetail = getValueFromInput(inputDetail);
+        inputStatus = getValueFromInput(inputStatus);
+
+    })
+}
+
+function getValueFromInput(element) {
+    element = element.value;
+    return element;
 }
 
 function main() {
