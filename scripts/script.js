@@ -178,14 +178,30 @@ function submitBtnClick(arr) {
         const taskObj = assignInput(inputId, inputDetail, inputStatus);
 
         pushToArr(arr, taskObj);
-        console.log(arr.length);
+
         console.log(arr);
+        console.log(arr.length);
+
+        removeInputValue();
     })
 }
 
 function getValueFromInput(element) {
     element = element.value;
     return element;
+}
+
+function removeValue(element){
+    element.value = "";
+}
+
+function removeInputValue(){
+    inputId = refInputId();
+    inputDetail= refInputDetail();
+    inputStatus = refInputStatus();
+    removeValue(inputId);
+    removeValue(inputDetail);
+    removeValue(inputStatus);
 }
 
 function main() {
