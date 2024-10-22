@@ -81,6 +81,11 @@ function textCreateTaskSuccessful() {
     return textContent;
 }
 
+function textEmpty() {
+    textContent = "";
+    return textContent;
+}
+
 function refActivityContainer() {
     const activityContainer = document.querySelector('.activity-container');
     return activityContainer;
@@ -179,11 +184,19 @@ function submitBtnClick(arr) {
 
         pushToArr(arr, taskObj);
 
+        setTextContent(refActivityText(), textCreateTaskSuccessful());
+
         console.log(arr);
         console.log(arr.length);
 
         removeInputValue();
+        
+        setTimeout(clearActivityText, 1500);
     })
+}
+
+function clearActivityText() {
+    setTextContent(refActivityText(), textEmpty())
 }
 
 function getValueFromInput(element) {
