@@ -17,18 +17,6 @@ function pushToArr(originalArr, arrItem) {
     return originalArr;
 }
 
-function getAmountOfTask() {
-    let taskAmount = prompt("Get the amount of task");
-    return taskAmount;
-}
-
-function loopAmountTask(amountInput) {
-    let arrObjTask = [];
-    for(let i = 0; i < amountInput; i++){
-        main(arrObjTask);
-    }
-}
-
 function displayAllTask(inputArrObj) {
     inputArrObj.forEach(element => {
         console.log(element);
@@ -64,7 +52,7 @@ function refCreateBTn() {
     return createBtn;
 }
 
-function createBtnClick() {
+function createBtnClick(arr) {
     const createBtn = refCreateBTn();
     createBtn.addEventListener("click", () => {
         updateActivityText(textCreateTask());
@@ -72,6 +60,7 @@ function createBtnClick() {
         createDetailSubmission();
         createStatusSubmission();
         createSubmitBtn();
+        submitBtnClick(arr);
     });
 }
 
@@ -166,7 +155,7 @@ function refInputId() {
 }
 
 function refInputDetail() {
-    const inputDetail = document.querySelector('#input-detait');
+    const inputDetail = document.querySelector('#input-detail');
     return inputDetail;
 }
 
@@ -175,7 +164,7 @@ function refInputStatus() {
     return inputStatus;
 }
 
-function submitBtnClick() {
+function submitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
         inputId = refInputId();
@@ -186,6 +175,11 @@ function submitBtnClick() {
         inputDetail = getValueFromInput(inputDetail);
         inputStatus = getValueFromInput(inputStatus);
 
+        const taskObj = assignInput(inputId, inputDetail, inputStatus);
+
+        pushToArr(arr, taskObj);
+        console.log(arr.length);
+        console.log(arr);
     })
 }
 
@@ -195,7 +189,8 @@ function getValueFromInput(element) {
 }
 
 function main() {
-    createBtnClick();
+    let taskArrObj = []
+    createBtnClick(taskArrObj);
 }
 
 main(); 
