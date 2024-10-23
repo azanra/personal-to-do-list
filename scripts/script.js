@@ -17,13 +17,6 @@ function pushToArr(originalArr, arrItem) {
     return originalArr;
 }
 
-function displayAllTask(inputArrObj) {
-    inputArrObj.forEach(element => {
-        console.log(element);
-    });
-    return inputArrObj;
-}
-
 function getTaskId() {
     let inputTaskId = prompt("Input task id");
     return inputTaskId;
@@ -192,6 +185,9 @@ function submitBtnClick(arr) {
         removeInputValue();
         
         setTimeout(clearActivityText, 1500);
+
+        deleteExistingListItem();
+        displayAllTask(arr);
     })
 }
 
@@ -200,7 +196,7 @@ function clearActivityText() {
 }
 
 function getValueFromInput(element) {
-    element = element.value;
+    element = element.value; 
     return element;
 }
 
@@ -215,6 +211,50 @@ function removeInputValue(){
     removeValue(inputId);
     removeValue(inputDetail);
     removeValue(inputStatus);
+}
+
+function refTaskContainer() {
+    const taskContainer = document.querySelector('.task-container');
+    return taskContainer;
+}
+
+function createOrderedList() {
+    const orderedList = document.createElement('ol');
+    orderedList.setAttribute('id', 'order-list')
+    return orderedList;
+}
+
+function refOrderedList() {
+    const orderedList = document.querySelector('#order-list');
+    return orderedList;
+}
+
+function createListItem() {
+    const listItem = document.createElement('li')
+    return listItem;
+}
+
+function refListItem() {
+    const listItem = document.querySelector('li');
+    return listItem;
+}
+
+function deleteExistingListItem() {
+    const arrListItem = document.querySelectorAll('li');
+    arrListItem.forEach((element) => {
+        element.remove();
+    })
+}
+
+function displayAllTask(inputArrObj) {
+    const taskContainer = refTaskContainer();
+    const orderedList = createOrderedList();
+    appendElement(taskContainer, orderedList);
+    inputArrObj.forEach((element) => {
+        listItem = createListItem();
+        listItem.textContent = element.taskId + " | " + element.taskDetail + " | " + element.taskStatus;
+        appendElement(refOrderedList(), listItem);
+    });
 }
 
 function main() {
