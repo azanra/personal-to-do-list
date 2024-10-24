@@ -45,9 +45,18 @@ function refCreateBTn() {
     return createBtn;
 }
 
+function disableElement(ref) {
+    ref.disabled = true;
+}
+
+function enableElement(ref) {
+    ref.disabled = false;
+}
+
 function createBtnClick(arr) {
     const createBtn = refCreateBTn();
     createBtn.addEventListener("click", () => {
+        disableElement(createBtn);
         updateActivityText(textCreateTask());
         createIdSubmission();
         createDetailSubmission();
@@ -218,15 +227,15 @@ function refTaskContainer() {
     return taskContainer;
 }
 
-function createOrderedList() {
-    const orderedList = document.createElement('ol');
-    orderedList.setAttribute('id', 'order-list')
-    return orderedList;
+function createUnorderedList() {
+    const UnorderedList = document.createElement('ul');
+    UnorderedList.setAttribute('id', 'unorder-list')
+    return UnorderedList;
 }
 
-function refOrderedList() {
-    const orderedList = document.querySelector('#order-list');
-    return orderedList;
+function refUnorderedList() {
+    const UnorderedList = document.querySelector('#unorder-list');
+    return UnorderedList;
 }
 
 function createListItem() {
@@ -248,12 +257,12 @@ function deleteExistingListItem() {
 
 function displayAllTask(inputArrObj) {
     const taskContainer = refTaskContainer();
-    const orderedList = createOrderedList();
-    appendElement(taskContainer, orderedList);
+    const UnorderedList = createUnorderedList();
+    appendElement(taskContainer, UnorderedList);
     inputArrObj.forEach((element) => {
         listItem = createListItem();
         listItem.textContent = element.taskId + " | " + element.taskDetail + " | " + element.taskStatus;
-        appendElement(refOrderedList(), listItem);
+        appendElement(refUnorderedList(), listItem);
     });
 }
 
