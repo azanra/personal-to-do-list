@@ -30,7 +30,7 @@ function editStatus(inputId, arrObjInput) {
     });
     return arrObjInput;
 }
-
+//
 function deleteTask(inputId, arrObjInput) {
     arrObjInput.forEach((element, index) => {
         if(element.taskId === inputId){
@@ -264,6 +264,30 @@ function displayAllTask(inputArrObj) {
         listItem.textContent = element.taskId + " | " + element.taskDetail + " | " + element.taskStatus;
         appendElement(refUnorderedList(), listItem);
     });
+}
+
+function refDeleteBTn() {
+    const deleteBtn = document.querySelector('#delete-btn');
+    return deleteBtn;
+}
+
+function deleteBtnCLick() {
+    const createBtn = refCreateBTn();
+    const inputId = refInputId();
+    const submitBtn = refSubmitBtn();
+    const inputDetail = refInputDetail();
+    const inputStatus = refInputStatus();
+    const deleteBtn = refDeleteBTn()
+    deleteBtn.addEventListener("click", () => {
+        enableElement(createBtn);
+        inputDetail.remove();
+        inputStatus.remove();
+    })
+
+}
+
+function deleteSubmitBtnClick() {
+
 }
 
 function main() {
