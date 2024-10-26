@@ -30,14 +30,13 @@ function editStatus(inputId, arrObjInput) {
     });
     return arrObjInput;
 }
-//
+
 function deleteTask(inputId, arrObjInput) {
     arrObjInput.forEach((element, index) => {
-        if(element.taskId === inputId){
+        if(element.taskId === inputId.value){
             arrObjInput.splice(index, 1);
         }
     });
-    return arrObjInput;
 }
 
 function refCreateBTn() {
@@ -171,6 +170,7 @@ function refInputStatus() {
     return inputStatus;
 }
 
+
 function submitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
@@ -271,28 +271,38 @@ function refDeleteBTn() {
     return deleteBtn;
 }
 
-function deleteBtnCLick() {
-    const createBtn = refCreateBTn();
-    const inputId = refInputId();
-    const submitBtn = refSubmitBtn();
-    const inputDetail = refInputDetail();
-    const inputStatus = refInputStatus();
-    const deleteBtn = refDeleteBTn()
+function deleteBtnCLick(arr) {
+    const deleteBtn = refDeleteBTn();
     deleteBtn.addEventListener("click", () => {
+        const inputDetail = refInputDetail();
+        const inputStatus = refInputStatus();
+        const createBtn = refCreateBTn();
+        const submitBtn = refSubmitBtn()
+        submitBtn.remove();
+        createSubmitBtn();
         enableElement(createBtn);
         inputDetail.remove();
         inputStatus.remove();
+        deleteSubmitBtnClick(arr);
     })
-
 }
 
-function deleteSubmitBtnClick() {
-
+function deleteSubmitBtnClick(arr) {
+    const submitBtn = refSubmitBtn();
+    submitBtn.addEventListener("click", () => {
+        const idInput = refInputId();   
+        deleteInputId = getValueFromInput(idInput);
+        deleteTask(inputId, arr);
+        deleteExistingListItem();
+        displayAllTask(arr);
+        removeValue(idInput);
+    })
 }
 
 function main() {
     let taskArrObj = []
     createBtnClick(taskArrObj);
+    deleteBtnCLick(taskArrObj);
 }
 
 main(); 
