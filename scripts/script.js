@@ -288,6 +288,7 @@ function deleteBtnCLick(arr) {
         removeDetailLabel();
         inputStatus.remove();
         removeStatusLabel();
+        setTextContent(refActivityText(), "Delete");
         deleteSubmitBtnClick(arr);
     })
 }
@@ -321,7 +322,14 @@ function deleteSubmitBtnClick(arr) {
         deleteExistingListItem();
         displayAllTask(arr);
         removeValue(idInput);
+        setTextContent(refActivityText(), textDeleteTextSuccessfull());
+        setTimeout(clearActivityText, 1500);
     })
+}
+
+function textDeleteTextSuccessfull() {
+    textContent = "Delete task is successfull";
+    return textContent;
 }
 
 function main() {
