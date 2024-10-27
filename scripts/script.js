@@ -114,6 +114,7 @@ function createIdSubmission() {
     const idInputLabel = document.createElement('label');
     const idInput = document.createElement('input');
     setTextContent(idInputLabel, "ID");
+    idInputLabel.setAttribute('id', 'id-label');
     idInput.setAttribute('id', 'input-id');
     appendElement(refSubmitContainer(), idInputLabel);
     appendElement(refSubmitContainer(), idInput);
@@ -123,6 +124,7 @@ function createDetailSubmission() {
     const detailInputLabel = document.createElement('label');
     const detailInput = document.createElement('input');
     setTextContent(detailInputLabel, "Detail");
+    detailInputLabel.setAttribute('id', 'detail-label');
     detailInput.setAttribute('id','input-detail');
     appendElement(refSubmitContainer(), detailInputLabel);
     appendElement(refSubmitContainer(), detailInput);
@@ -132,6 +134,7 @@ function createStatusSubmission() {
     const statusInputLabel = document.createElement('label');
     const statusInput = document.createElement('input');
     setTextContent(statusInputLabel, "Status");
+    statusInputLabel.setAttribute('id','status-label');
     statusInput.setAttribute('id', 'input-status');
     appendElement(refSubmitContainer(), statusInputLabel);
     appendElement(refSubmitContainer(), statusInput);
@@ -282,9 +285,31 @@ function deleteBtnCLick(arr) {
         createSubmitBtn();
         enableElement(createBtn);
         inputDetail.remove();
+        removeDetailLabel();
         inputStatus.remove();
+        removeStatusLabel();
         deleteSubmitBtnClick(arr);
     })
+}
+
+function refDetailLabel() {
+    const detailLabel = document.querySelector('#detail-label');
+    return detailLabel;
+}
+
+function removeDetailLabel(){
+    const detailLabel = refDetailLabel();
+    detailLabel.remove();
+}
+
+function refStatusLabel() {
+    const statusLabel = document.querySelector('#status-label');
+    return statusLabel;
+}
+
+function removeStatusLabel() {
+    const statusLabel = refStatusLabel();
+    statusLabel.remove();
 }
 
 function deleteSubmitBtnClick(arr) {
