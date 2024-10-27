@@ -288,7 +288,7 @@ function deleteBtnCLick(arr) {
         removeDetailLabel();
         inputStatus.remove();
         removeStatusLabel();
-        setTextContent(refActivityText(), "Delete");
+        setTextContent(refActivityText(), "Delete task");
         deleteSubmitBtnClick(arr);
     })
 }
@@ -332,10 +332,29 @@ function textDeleteTextSuccessfull() {
     return textContent;
 }
 
+function refUpdateBtn() {
+    const updateBtn = document.querySelector('#update-btn');
+    return updateBtn;
+}
+
+function updateBtnClick(arr) {
+    const updateBtn = refUpdateBtn();
+    updateBtn.addEventListener("click", () => {
+        const detailInput = refInputDetail();
+        detailInput.remove();
+        removeDetailLabel();
+        const submitBtn = refSubmitBtn();
+        submitBtn.remove();
+        createSubmitBtn();
+        setTextContent(refActivityText(), "Update task");
+    })
+}
+
 function main() {
     let taskArrObj = []
     createBtnClick(taskArrObj);
     deleteBtnCLick(taskArrObj);
+    updateBtnClick(taskArrObj);
 }
 
 main(); 
