@@ -5,11 +5,11 @@ function createObjTask(id, detail, status) {
 }
 
 function assignInput(idInput, detailInput, statusInput) {
-    inputId = idInput;
+    updateInputId = idInput;
     inputDetail = detailInput;
     inputStatus = statusInput;
     
-    return new createObjTask(inputId, inputDetail, inputStatus); 
+    return new createObjTask(updateInputId, inputDetail, inputStatus); 
 }
 
 function pushToArr(originalArr, arrItem) {
@@ -22,18 +22,17 @@ function getTaskId() {
     return inputTaskId;
 }
 
-function editStatus(inputId, arrObjInput) {
+function updateStatus(updateInputId, inputStatus, arrObjInput) {
     arrObjInput.forEach(element => {
-        if(element.taskId === inputId){
-            element.taskStatus = "done";
+        if(element.taskId === updateInputId){
+            element.taskStatus = inputStatus;
         }
     });
-    return arrObjInput;
 }
 
-function deleteTask(inputId, arrObjInput) {
+function deleteTask(updateInputId, arrObjInput) {
     arrObjInput.forEach((element, index) => {
-        if(element.taskId === inputId.value){
+        if(element.taskId === updateInputId.value){
             arrObjInput.splice(index, 1);
         }
     });
@@ -159,8 +158,8 @@ function refSubmitBtn() {
 }
 
 function refInputId() {
-    const inputId = document.querySelector('#input-id');
-    return inputId;
+    const updateInputId = document.querySelector('#input-id');
+    return updateInputId;
 }
 
 function refInputDetail() {
@@ -177,15 +176,15 @@ function refInputStatus() {
 function submitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
-        inputId = refInputId();
+        updateInputId = refInputId();
         inputDetail= refInputDetail();
         inputStatus = refInputStatus();
         
-        inputId = getValueFromInput(inputId);
+        updateInputId = getValueFromInput(updateInputId);
         inputDetail = getValueFromInput(inputDetail);
         inputStatus = getValueFromInput(inputStatus);
 
-        const taskObj = assignInput(inputId, inputDetail, inputStatus);
+        const taskObj = assignInput(updateInputId, inputDetail, inputStatus);
 
         pushToArr(arr, taskObj);
 
@@ -217,10 +216,10 @@ function removeValue(element){
 }
 
 function removeInputValue(){
-    inputId = refInputId();
+    updateInputId = refInputId();
     inputDetail= refInputDetail();
     inputStatus = refInputStatus();
-    removeValue(inputId);
+    removeValue(updateInputId);
     removeValue(inputDetail);
     removeValue(inputStatus);
 }
@@ -318,7 +317,7 @@ function deleteSubmitBtnClick(arr) {
     submitBtn.addEventListener("click", () => {
         const idInput = refInputId();   
         deleteInputId = getValueFromInput(idInput);
-        deleteTask(inputId, arr);
+        deleteTask(updateInputId, arr);
         deleteExistingListItem();
         displayAllTask(arr);
         removeValue(idInput);
@@ -347,7 +346,28 @@ function updateBtnClick(arr) {
         submitBtn.remove();
         createSubmitBtn();
         setTextContent(refActivityText(), "Update task");
+        updateSubmitBtnClick(arr);
     })
+}
+
+function updateSubmitBtnClick(arr) {
+    const submitBtn = refSubmitBtn();
+    submitBtn.addEventListener("click", () => {
+        const inputId = refInputId();
+        const inputStatus = refInputStatus();
+        updateInputId = getValueFromInput(inputId);
+        updateInputStatus = getValueFromInput(inputStatus);
+        updateStatus(updateInputId, updateInputStatus, arr);
+        deleteExistingListItem();
+        displayAllTask(arr);
+        setTextContent(refActivityText(), updateStatusTextSuccessfull());
+        setTimeout(clearActivityText, 1500);
+    })
+}
+
+function updateStatusTextSuccessfull() {
+    textContent = "Update task status successfull";
+    return textContent;
 }
 
 function main() {
