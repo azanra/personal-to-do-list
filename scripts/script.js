@@ -360,6 +360,8 @@ function updateSubmitBtnClick(arr) {
         updateStatus(updateInputId, updateInputStatus, arr);
         deleteExistingListItem();
         displayAllTask(arr);
+        removeValue(refInputId());
+        removeValue(refInputStatus());
         setTextContent(refActivityText(), updateStatusTextSuccessfull());
         setTimeout(clearActivityText, 1500);
     })
