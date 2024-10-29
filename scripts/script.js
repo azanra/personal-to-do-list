@@ -56,10 +56,10 @@ function createBtnClick(arr) {
     createBtn.addEventListener("click", () => {
         disableElement(createBtn);
         updateActivityText(textCreateTask());
-        createIdSubmission();
-        createDetailSubmission();
-        createStatusSubmission();
-        createSubmitBtn();
+        checkElementExistToCreate(refInputId(), createIdSubmission());
+        checkElementExistToCreate(refInputDetail(), createDetailSubmission());
+        checkElementExistToCreate(refInputStatus(), createStatusSubmission());
+        checkElementExistToCreate(refSubmitBtn(), createSubmitBtn());
         submitBtnClick(arr);
     });
 }
@@ -158,8 +158,8 @@ function refSubmitBtn() {
 }
 
 function refInputId() {
-    const updateInputId = document.querySelector('#input-id');
-    return updateInputId;
+    const InputId = document.querySelector('#input-id');
+    return InputId;
 }
 
 function refInputDetail() {
@@ -176,15 +176,15 @@ function refInputStatus() {
 function submitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
-        updateInputId = refInputId();
+        inputId = refInputId();
         inputDetail= refInputDetail();
         inputStatus = refInputStatus();
         
-        updateInputId = getValueFromInput(updateInputId);
+        inputId = getValueFromInput(inputId);
         inputDetail = getValueFromInput(inputDetail);
         inputStatus = getValueFromInput(inputStatus);
 
-        const taskObj = assignInput(updateInputId, inputDetail, inputStatus);
+        const taskObj = assignInput(inputId, inputDetail, inputStatus);
 
         pushToArr(arr, taskObj);
 
@@ -216,10 +216,10 @@ function removeValue(element){
 }
 
 function removeInputValue(){
-    updateInputId = refInputId();
+    inputId = refInputId();
     inputDetail= refInputDetail();
     inputStatus = refInputStatus();
-    removeValue(updateInputId);
+    removeValue(inputId);
     removeValue(inputDetail);
     removeValue(inputStatus);
 }
@@ -282,13 +282,13 @@ function deleteBtnCLick(arr) {
         const statusLabel = refStatusLabel()
         const createBtn = refCreateBTn();
         const submitBtn = refSubmitBtn()
-        checkElementExist(submitBtn);
+        checkElementExistToDelete(submitBtn);
         createSubmitBtn();
         enableElement(createBtn);
-        checkElementExist(inputDetail);
-        checkElementExist(detailLabel);
-        checkElementExist(inputStatus);
-        checkElementExist(statusLabel);
+        checkElementExistToDelete(inputDetail);
+        checkElementExistToDelete(detailLabel);
+        checkElementExistToDelete(inputStatus);
+        checkElementExistToDelete(statusLabel);
         setTextContent(refActivityText(), "Delete task");
         deleteSubmitBtnClick(arr);
     })
@@ -333,11 +333,12 @@ function updateBtnClick(arr) {
     updateBtn.addEventListener("click", () => {
         const detailInput = refInputDetail();
         const detailInputLabel = refDetailLabel()
-        checkElementExist(detailInput);
-        checkElementExist(detailInputLabel);
+        checkElementExistToDelete(detailInput);
+        checkElementExistToDelete(detailInputLabel);
         const submitBtn = refSubmitBtn();
-        checkElementExist(submitBtn);
+        checkElementExistToDelete(submitBtn);
         createSubmitBtn();
+        checkElementExistToCreate(refInputStatus(), createStatusSubmission());
         setTextContent(refActivityText(), "Update task");
         updateSubmitBtnClick(arr);
     })
@@ -365,9 +366,15 @@ function updateStatusTextSuccessfull() {
     return textContent;
 }
 
-function checkElementExist(element) {
+function checkElementExistToDelete(element) {
     if(element !== null) {
         element.remove();
+    }
+}
+
+function checkElementExistToCreate(element, createElement) {
+    if(element === null) {
+        createElement;
     }
 }
 
