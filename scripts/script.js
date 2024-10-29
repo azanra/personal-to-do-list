@@ -30,9 +30,9 @@ function updateStatus(updateInputId, inputStatus, arrObjInput) {
     });
 }
 
-function deleteTask(updateInputId, arrObjInput) {
+function deleteTask(deleteInputId, arrObjInput) {
     arrObjInput.forEach((element, index) => {
-        if(element.taskId === updateInputId.value){
+        if(element.taskId === deleteInputId){
             arrObjInput.splice(index, 1);
         }
     });
@@ -277,16 +277,18 @@ function deleteBtnCLick(arr) {
     const deleteBtn = refDeleteBTn();
     deleteBtn.addEventListener("click", () => {
         const inputDetail = refInputDetail();
+        const detailLabel = refDetailLabel();
         const inputStatus = refInputStatus();
+        const statusLabel = refStatusLabel()
         const createBtn = refCreateBTn();
         const submitBtn = refSubmitBtn()
-        submitBtn.remove();
+        checkElementExist(submitBtn);
         createSubmitBtn();
         enableElement(createBtn);
-        inputDetail.remove();
-        removeDetailLabel();
-        inputStatus.remove();
-        removeStatusLabel();
+        checkElementExist(inputDetail);
+        checkElementExist(detailLabel);
+        checkElementExist(inputStatus);
+        checkElementExist(statusLabel);
         setTextContent(refActivityText(), "Delete task");
         deleteSubmitBtnClick(arr);
     })
@@ -297,19 +299,9 @@ function refDetailLabel() {
     return detailLabel;
 }
 
-function removeDetailLabel(){
-    const detailLabel = refDetailLabel();
-    detailLabel.remove();
-}
-
 function refStatusLabel() {
     const statusLabel = document.querySelector('#status-label');
     return statusLabel;
-}
-
-function removeStatusLabel() {
-    const statusLabel = refStatusLabel();
-    statusLabel.remove();
 }
 
 function deleteSubmitBtnClick(arr) {
@@ -317,7 +309,7 @@ function deleteSubmitBtnClick(arr) {
     submitBtn.addEventListener("click", () => {
         const idInput = refInputId();   
         deleteInputId = getValueFromInput(idInput);
-        deleteTask(updateInputId, arr);
+        deleteTask(deleteInputId, arr);
         deleteExistingListItem();
         displayAllTask(arr);
         removeValue(idInput);
@@ -340,10 +332,11 @@ function updateBtnClick(arr) {
     const updateBtn = refUpdateBtn();
     updateBtn.addEventListener("click", () => {
         const detailInput = refInputDetail();
-        detailInput.remove();
-        removeDetailLabel();
+        const detailInputLabel = refDetailLabel()
+        checkElementExist(detailInput);
+        checkElementExist(detailInputLabel);
         const submitBtn = refSubmitBtn();
-        submitBtn.remove();
+        checkElementExist(submitBtn);
         createSubmitBtn();
         setTextContent(refActivityText(), "Update task");
         updateSubmitBtnClick(arr);
@@ -370,6 +363,12 @@ function updateSubmitBtnClick(arr) {
 function updateStatusTextSuccessfull() {
     textContent = "Update task status successfull";
     return textContent;
+}
+
+function checkElementExist(element) {
+    if(element !== null) {
+        element.remove();
+    }
 }
 
 function main() {
