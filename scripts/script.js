@@ -51,15 +51,44 @@ function enableElement(ref) {
     ref.disabled = false;
 }
 
+function checkIfExistCreateInput(element) {
+    if(element === null){
+        createIdSubmission();
+    }
+}
+
+function checkIfExistCreateDetail(element) {
+    if(element === null) {
+        createDetailSubmission();
+    }
+}
+
+function checkIfExistCreateStatus(element) {
+    if(element === null) {
+        createStatusSubmission();
+    }
+}
+
+function checkIfExistCreateSubmit(element) {
+    if(element === null) {
+        createSubmitBtn();
+    }
+}
+
+
+
 function createBtnClick(arr) {
     const createBtn = refCreateBTn();
     createBtn.addEventListener("click", () => {
-        disableElement(createBtn);
         updateActivityText(textCreateTask());
-        checkElementExistToCreate(refInputId(), createIdSubmission());
-        checkElementExistToCreate(refInputDetail(), createDetailSubmission());
-        checkElementExistToCreate(refInputStatus(), createStatusSubmission());
-        checkElementExistToCreate(refSubmitBtn(), createSubmitBtn());
+        inputId = refInputId();
+        inputDetail = refInputDetail();
+        inputStatus = refInputStatus();
+        submitBtn = refSubmitBtn();
+        checkIfExistCreateInput(inputId);
+        checkIfExistCreateDetail(inputDetail);
+        checkIfExistCreateStatus(inputStatus);
+        checkIfExistCreateSubmit(submitBtn);
         submitBtnClick(arr);
     });
 }
@@ -336,10 +365,12 @@ function updateBtnClick(arr) {
         checkElementExistToDelete(detailInput);
         checkElementExistToDelete(detailInputLabel);
         const submitBtn = refSubmitBtn();
+        checkElementExistToDelete(refInputStatus());
+        checkElementExistToDelete(refStatusLabel());
+        createStatusSubmission();
+        setTextContent(refActivityText(), "Update task");
         checkElementExistToDelete(submitBtn);
         createSubmitBtn();
-        checkElementExistToCreate(refInputStatus(), createStatusSubmission());
-        setTextContent(refActivityText(), "Update task");
         updateSubmitBtnClick(arr);
     })
 }
@@ -369,12 +400,6 @@ function updateStatusTextSuccessfull() {
 function checkElementExistToDelete(element) {
     if(element !== null) {
         element.remove();
-    }
-}
-
-function checkElementExistToCreate(element, createElement) {
-    if(element === null) {
-        createElement;
     }
 }
 
