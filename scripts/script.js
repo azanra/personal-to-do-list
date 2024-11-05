@@ -88,7 +88,8 @@ function createBtnClick(arr) {
         checkIfExistCreateInput(inputId);
         checkIfExistCreateDetail(inputDetail);
         checkIfExistCreateStatus(inputStatus);
-        checkIfExistCreateSubmit(submitBtn);
+        checkElementExistToDelete(submitBtn);
+        createSubmitBtn();
         submitBtnClick(arr);
     });
 }
