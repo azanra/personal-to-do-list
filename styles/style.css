@@ -1,5 +1,5 @@
 .full-size {
-    height: 80vh;
+    height: 100vh;
     width: 100vw;
 }
 
@@ -9,3 +9,13 @@
     align-items: center;
 }
 
+.layout-container {
+    border: 2.5px solid black;
+    padding: 65px 100px;
+    border-radius: 5px;
+    margin-bottom: 200px;
+}
+
+.top-margin {
+    margin-top: 50px;
+}
