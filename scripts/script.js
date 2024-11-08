@@ -86,8 +86,8 @@ function createBtnClick(arr) {
         inputStatus = refInputStatus();
         submitBtn = refSubmitBtn();
         checkIfExistCreateInput(inputId);
-        checkIfExistCreateDetail(inputDetail);
         checkIfExistCreateStatus(inputStatus);
+        checkIfExistCreateDetail(inputDetail);
         checkElementExistToDelete(submitBtn);
         createSubmitBtn();
         submitBtnClick(arr);
