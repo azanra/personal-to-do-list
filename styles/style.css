@@ -1,3 +1,9 @@
+:root {
+    --main-color: rgb(17 24 39);
+    --content-color: rgb(30, 30, 44);
+    --contrast-color: rgb(255, 255, 255);
+}
+
 .full-size {
     height: 100vh;
     width: 100vw;
@@ -10,12 +16,26 @@
 }
 
 .layout-container {
-    border: 2.5px solid black;
+    border: 2.5px solid var(--contrast-color);
     padding: 65px 100px;
     border-radius: 5px;
     margin-bottom: 200px;
+    background-color: var(--content-color);
+    color: var(--contrast-color);
+}
+
+input {
+    margin-right: 50px;
+}
+
+label {
+    margin-right: 7.5px;
 }
 
 .top-margin {
     margin-top: 50px;
+}
+
+body {
+    background-color: var(--main-color);
 }
