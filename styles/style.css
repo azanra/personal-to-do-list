@@ -1,7 +1,23 @@
+@font-face {
+    font-family: 'montserratregular';
+    src: url('../fonts/montserrat-regular-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --main-color: rgb(17 24 39);
     --content-color: rgb(30, 30, 44);
     --contrast-color: rgb(255, 255, 255);
+    --system-font: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --main-font-size: 16px;
+}
+
+body {
+    background-color: var(--main-color);
+    font-family: 'montserratregular', var(--system-font);
+    font-size: var(--main-font-size);
 }
 
 .full-size {
@@ -36,6 +52,4 @@ label {
     margin-top: 50px;
 }
 
-body {
-    background-color: var(--main-color);
-}
+

@@ -113,7 +113,7 @@ function textCreateTaskSuccessful() {
 
 function textEmpty() {
     textContent = "";
-    return textContent;
+    return textContent; 
 }
 
 function refActivityContainer() {
