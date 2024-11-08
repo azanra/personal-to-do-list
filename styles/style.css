@@ -42,6 +42,12 @@ body {
     color: var(--contrast-color);
 }
 
+#create-btn,
+#update-btn,
+#delete-btn {
+    margin-right: 10px;
+}
+
 input {
     margin-right: 50px;
     border-radius: var(--rounded-corner);
