@@ -1,5 +1,6 @@
 import { Task } from "./modules/models/task.js";
 import { pushToArr, updateStatus, deleteTask } from "./modules/models/tasks.js";
+import { refCreateBTn, refUpdateBtn, refDeleteBTn } from "./modules/views/button/button.js";
 
 function assignInput(idInput, detailInput, statusInput) {
     let updateInputId = idInput;
@@ -12,11 +13,6 @@ function assignInput(idInput, detailInput, statusInput) {
 function getTaskId() {
     let inputTaskId = prompt("Input task id");
     return inputTaskId;
-}
-
-function refCreateBTn() {
-    const createBtn = document.querySelector('#create-btn');
-    return createBtn;
 }
 
 function disableElement(ref) {
@@ -271,11 +267,6 @@ function displayAllTask(inputArrObj) {
     });
 }
 
-function refDeleteBTn() {
-    const deleteBtn = document.querySelector('#delete-btn');
-    return deleteBtn;
-}
-
 function deleteBtnCLick(arr) {
     const deleteBtn = refDeleteBTn();
     deleteBtn.addEventListener("click", () => {
@@ -324,11 +315,6 @@ function deleteSubmitBtnClick(arr) {
 function textDeleteTextSuccessfull() {
     let textContent = "Delete task is successfull";
     return textContent;
-}
-
-function refUpdateBtn() {
-    const updateBtn = document.querySelector('#update-btn');
-    return updateBtn;
 }
 
 function updateBtnClick(arr) {
