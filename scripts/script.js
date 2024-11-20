@@ -1,4 +1,5 @@
 import { Task } from "./modules/models/task.js";
+import { pushToArr, updateStatus, deleteTask } from "./modules/models/tasks.js";
 
 function assignInput(idInput, detailInput, statusInput) {
     let updateInputId = idInput;
@@ -8,30 +9,9 @@ function assignInput(idInput, detailInput, statusInput) {
     return new Task(updateInputId, inputDetail, inputStatus); 
 }
 
-function pushToArr(originalArr, arrItem) {
-    originalArr.push(arrItem);
-    return originalArr;
-}
-
 function getTaskId() {
     let inputTaskId = prompt("Input task id");
     return inputTaskId;
-}
-
-function updateStatus(updateInputId, inputStatus, arrObjInput) {
-    arrObjInput.forEach(element => {
-        if(element.id === updateInputId){
-            element.status = inputStatus;
-        }
-    });
-}
-
-function deleteTask(deleteInputId, arrObjInput) {
-    arrObjInput.forEach((element, index) => {
-        if(element.id === deleteInputId){
-            arrObjInput.splice(index, 1);
-        }
-    });
 }
 
 function refCreateBTn() {
@@ -374,8 +354,8 @@ function updateSubmitBtnClick(arr) {
     submitBtn.addEventListener("click", () => {
         const inputId = refInputId();
         const inputStatus = refInputStatus();
-        updateInputId = getValueFromInput(inputId);
-        updateInputStatus = getValueFromInput(inputStatus);
+        let updateInputId = getValueFromInput(inputId);
+        let updateInputStatus = getValueFromInput(inputStatus);
         updateStatus(updateInputId, updateInputStatus, arr);
         deleteExistingListItem();
         displayAllTask(arr);
