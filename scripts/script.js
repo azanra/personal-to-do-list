@@ -1,15 +1,11 @@
-function createObjTask(id, detail, status) {
-    this.taskId = id;
-    this.taskDetail = detail;
-    this.taskStatus = status;
-}
+import { Task } from "./modules/models/task.js";
 
 function assignInput(idInput, detailInput, statusInput) {
-    updateInputId = idInput;
-    inputDetail = detailInput;
-    inputStatus = statusInput;
+    let updateInputId = idInput;
+    let inputDetail = detailInput;
+    let inputStatus = statusInput;
     
-    return new createObjTask(updateInputId, inputDetail, inputStatus); 
+    return new Task(updateInputId, inputDetail, inputStatus); 
 }
 
 function pushToArr(originalArr, arrItem) {
@@ -24,15 +20,15 @@ function getTaskId() {
 
 function updateStatus(updateInputId, inputStatus, arrObjInput) {
     arrObjInput.forEach(element => {
-        if(element.taskId === updateInputId){
-            element.taskStatus = inputStatus;
+        if(element.id === updateInputId){
+            element.status = inputStatus;
         }
     });
 }
 
 function deleteTask(deleteInputId, arrObjInput) {
     arrObjInput.forEach((element, index) => {
-        if(element.taskId === deleteInputId){
+        if(element.id === deleteInputId){
             arrObjInput.splice(index, 1);
         }
     });
@@ -75,16 +71,14 @@ function checkIfExistCreateSubmit(element) {
     }
 }
 
-
-
 function createBtnClick(arr) {
     const createBtn = refCreateBTn();
     createBtn.addEventListener("click", () => {
         updateActivityText(textCreateTask());
-        inputId = refInputId();
-        inputDetail = refInputDetail();
-        inputStatus = refInputStatus();
-        submitBtn = refSubmitBtn();
+        let inputId = refInputId();
+        let inputDetail = refInputDetail();
+        let inputStatus = refInputStatus();
+        let submitBtn = refSubmitBtn();
         checkIfExistCreateInput(inputId);
         checkIfExistCreateStatus(inputStatus);
         checkIfExistCreateDetail(inputDetail);
@@ -102,17 +96,17 @@ function updateActivityText(content) {
 }
 
 function textCreateTask() {
-    textContent = "Create Task";
+    let textContent = "Create Task";
     return textContent;
 }
 
 function textCreateTaskSuccessful() {
-    textContent = "Create Task is Successful";
+    let textContent = "Create Task is Successful";
     return textContent;
 }
 
 function textEmpty() {
-    textContent = "";
+    let textContent = "";
     return textContent; 
 }
 
@@ -202,13 +196,12 @@ function refInputStatus() {
     return inputStatus;
 }
 
-
 function submitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
-        inputId = refInputId();
-        inputDetail= refInputDetail();
-        inputStatus = refInputStatus();
+        let inputId = refInputId();
+        let inputDetail= refInputDetail();
+        let inputStatus = refInputStatus();
         
         inputId = getValueFromInput(inputId);
         inputDetail = getValueFromInput(inputDetail);
@@ -246,9 +239,9 @@ function removeValue(element){
 }
 
 function removeInputValue(){
-    inputId = refInputId();
-    inputDetail= refInputDetail();
-    inputStatus = refInputStatus();
+    let inputId = refInputId();
+    let inputDetail= refInputDetail();
+    let inputStatus = refInputStatus();
     removeValue(inputId);
     removeValue(inputDetail);
     removeValue(inputStatus);
@@ -292,8 +285,8 @@ function displayAllTask(inputArrObj) {
     const UnorderedList = createUnorderedList();
     appendElement(taskContainer, UnorderedList);
     inputArrObj.forEach((element) => {
-        listItem = createListItem();
-        listItem.textContent = element.taskId + " | " + element.taskDetail + " | " + element.taskStatus;
+        let listItem = createListItem();
+        listItem.textContent = element.id + " | " + element.detail + " | " + element.status;
         appendElement(refUnorderedList(), listItem);
     });
 }
@@ -338,7 +331,7 @@ function deleteSubmitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
         const idInput = refInputId();   
-        deleteInputId = getValueFromInput(idInput);
+        let deleteInputId = getValueFromInput(idInput);
         deleteTask(deleteInputId, arr);
         deleteExistingListItem();
         displayAllTask(arr);
@@ -349,7 +342,7 @@ function deleteSubmitBtnClick(arr) {
 }
 
 function textDeleteTextSuccessfull() {
-    textContent = "Delete task is successfull";
+    let textContent = "Delete task is successfull";
     return textContent;
 }
 
@@ -394,7 +387,7 @@ function updateSubmitBtnClick(arr) {
 }
 
 function updateStatusTextSuccessfull() {
-    textContent = "Update task status successfull";
+    let textContent = "Update task status successfull";
     return textContent;
 }
 
