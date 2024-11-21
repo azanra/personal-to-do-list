@@ -1,6 +1,10 @@
 import { Task } from "./modules/models/task.js";
 import { pushToArr, updateStatus, deleteTask } from "./modules/models/tasks.js";
 import { refCreateBTn, refUpdateBtn, refDeleteBTn } from "./modules/views/button/button.js";
+import { refActivityContainer, refActivityText, textCreateTask, textCreateTaskSuccessful, textDeleteTextSuccessfull, updateStatusTextSuccessfull } from "./modules/views/activity/activity.js";
+import { refInputId, createIdSubmission } from "./modules/views/submit/idSubmit.js";
+import { refInputDetail, createDetailSubmission } from "./modules/views/submit/detailSubmit.js";
+import { refSubmitBtn, createSubmitBtn } from "./modules/views/submit/submitBtn.js";
 
 function assignInput(idInput, detailInput, statusInput) {
     let updateInputId = idInput;
@@ -71,62 +75,22 @@ function updateActivityText(content) {
     appendElement(activityContainer,activityText);
 }
 
-function textCreateTask() {
-    let textContent = "Create Task";
-    return textContent;
-}
-
-function textCreateTaskSuccessful() {
-    let textContent = "Create Task is Successful";
-    return textContent;
-}
-
 function textEmpty() {
     let textContent = "";
     return textContent; 
 }
 
-function refActivityContainer() {
-    const activityContainer = document.querySelector('.activity-container');
-    return activityContainer;
-}
-
-function refActivityText() {
-    const activityText = document.querySelector('.activity-text');
-    return activityText;
-}
-
-function setTextContent(element, content) {
+export function setTextContent(element, content) {
     element.textContent = content;
 }
 
-function appendElement(parent, child){
+export function appendElement(parent, child){
     parent.appendChild(child);
 }
 
-function refSubmitContainer() {
+export function refSubmitContainer() {
     const submitContainer = document.querySelector('.submit-container');
     return submitContainer;
-}
-
-function createIdSubmission() {
-    const idInputLabel = document.createElement('label');
-    const idInput = document.createElement('input');
-    setTextContent(idInputLabel, "ID");
-    idInputLabel.setAttribute('id', 'id-label');
-    idInput.setAttribute('id', 'input-id');
-    appendElement(refSubmitContainer(), idInputLabel);
-    appendElement(refSubmitContainer(), idInput);
-}
-
-function createDetailSubmission() {
-    const detailInputLabel = document.createElement('label');
-    const detailInput = document.createElement('input');
-    setTextContent(detailInputLabel, "Detail");
-    detailInputLabel.setAttribute('id', 'detail-label');
-    detailInput.setAttribute('id','input-detail');
-    appendElement(refSubmitContainer(), detailInputLabel);
-    appendElement(refSubmitContainer(), detailInput);
 }
 
 function createStatusSubmission() {
@@ -139,33 +103,11 @@ function createStatusSubmission() {
     appendElement(refSubmitContainer(), statusInput);
 }
 
-function setMultipleAttribute(element, attribute) {
+export function setMultipleAttribute(element, attribute) {
     for(let key in attribute){
         element.setAttribute(key, attribute[key]);
     }
 } 
-
-function createSubmitBtn() {
-    const submitBtn = document.createElement('button');
-    setMultipleAttribute(submitBtn, {"id":"submit-btn", "type":"button"});
-    submitBtn.innerText = "Submit";
-    appendElement(refSubmitContainer(), submitBtn);
-}
-
-function refSubmitBtn() {
-    const submitBtn = document.querySelector('#submit-btn');
-    return submitBtn;
-}
-
-function refInputId() {
-    const InputId = document.querySelector('#input-id');
-    return InputId;
-}
-
-function refInputDetail() {
-    const inputDetail = document.querySelector('#input-detail');
-    return inputDetail;
-}
 
 function refInputStatus() {
     const inputStatus = document.querySelector('#input-status');
@@ -312,11 +254,6 @@ function deleteSubmitBtnClick(arr) {
     })
 }
 
-function textDeleteTextSuccessfull() {
-    let textContent = "Delete task is successfull";
-    return textContent;
-}
-
 function updateBtnClick(arr) {
     const updateBtn = refUpdateBtn();
     updateBtn.addEventListener("click", () => {
@@ -350,11 +287,6 @@ function updateSubmitBtnClick(arr) {
         setTextContent(refActivityText(), updateStatusTextSuccessfull());
         setTimeout(clearActivityText, 1500);
     })
-}
-
-function updateStatusTextSuccessfull() {
-    let textContent = "Update task status successfull";
-    return textContent;
 }
 
 function checkElementExistToDelete(element) {
