@@ -1,9 +1,5 @@
 import { setTextContent, appendElement, refSubmitContainer } from "../../../script.js";
 
-function refInputDetail() {
-    const inputDetail = document.querySelector('#input-detail');
-    return inputDetail;
-}
 
 function createDetailSubmission() {
     const detailInputLabel = document.createElement('label');
@@ -15,4 +11,4 @@ function createDetailSubmission() {
     appendElement(refSubmitContainer(), detailInput);
 }
 
-export {refInputDetail, createDetailSubmission};
+export {createDetailSubmission};

@@ -2,10 +2,11 @@ import { Task } from "./modules/models/task.js";
 import { pushToArr, updateStatus, deleteTask } from "./modules/models/tasks.js";
 import { refCreateBTn, refUpdateBtn, refDeleteBTn } from "./modules/views/button/button.js";
 import { refActivityContainer, refActivityText, textCreateTask, textCreateTaskSuccessful, textDeleteTextSuccessfull, updateStatusTextSuccessfull } from "./modules/views/activity/activity.js";
-import { refInputId, createIdSubmission } from "./modules/views/submit/idSubmit.js";
-import { refInputDetail, createDetailSubmission } from "./modules/views/submit/detailSubmit.js";
+import { createIdSubmission } from "./modules/views/submit/idSubmit.js";
+import { createDetailSubmission } from "./modules/views/submit/detailSubmit.js";
 import { refSubmitBtn, createSubmitBtn } from "./modules/views/submit/submitBtn.js";
-import { deleteExistingListItem, displayAllTask, refListItem } from "./modules/views/task/taskContainer.js";
+import { displayAllTask  } from "./modules/views/task/taskContainer.js";
+import { createStatusSubmission } from "./modules/views/submit/statusSubmit.js";
 
 function assignInput(idInput, detailInput, statusInput) {
     let updateInputId = idInput;
@@ -85,14 +86,14 @@ export function refSubmitContainer() {
     return submitContainer;
 }
 
-function createStatusSubmission() {
-    const statusInputLabel = document.createElement('label');
-    const statusInput = document.createElement('input');
-    setTextContent(statusInputLabel, "Status");
-    statusInputLabel.setAttribute('id','status-label');
-    statusInput.setAttribute('id', 'input-status');
-    appendElement(refSubmitContainer(), statusInputLabel);
-    appendElement(refSubmitContainer(), statusInput);
+function refInputDetail() {
+    const inputDetail = document.querySelector('#input-detail');
+    return inputDetail;
+}
+
+function refInputId() {
+    const InputId = document.querySelector('#input-id');
+    return InputId;
 }
 
 export function setMultipleAttribute(element, attribute) {

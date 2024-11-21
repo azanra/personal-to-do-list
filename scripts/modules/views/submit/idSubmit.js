@@ -1,9 +1,5 @@
 import { setTextContent, appendElement, refSubmitContainer } from "../../../script.js";
 
-function refInputId() {
-    const InputId = document.querySelector('#input-id');
-    return InputId;
-}
 
 function createIdSubmission() {
     const idInputLabel = document.createElement('label');
@@ -15,4 +11,4 @@ function createIdSubmission() {
     appendElement(refSubmitContainer(), idInput);
 }
 
-export {refInputId, createIdSubmission};
+export {createIdSubmission};

@@ -48,4 +48,4 @@ function displayAllTask(inputArrObj) {
     });
 }
 
-export {refTaskContainer, refUnorderedList, createUnorderedList, createListItem, refListItem, deleteExistingListItem, displayAllTask};
+export {displayAllTask};
