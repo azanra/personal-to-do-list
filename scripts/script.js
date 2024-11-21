@@ -5,6 +5,7 @@ import { refActivityContainer, refActivityText, textCreateTask, textCreateTaskSu
 import { refInputId, createIdSubmission } from "./modules/views/submit/idSubmit.js";
 import { refInputDetail, createDetailSubmission } from "./modules/views/submit/detailSubmit.js";
 import { refSubmitBtn, createSubmitBtn } from "./modules/views/submit/submitBtn.js";
+import { deleteExistingListItem, displayAllTask, refListItem } from "./modules/views/task/taskContainer.js";
 
 function assignInput(idInput, detailInput, statusInput) {
     let updateInputId = idInput;
@@ -12,15 +13,6 @@ function assignInput(idInput, detailInput, statusInput) {
     let inputStatus = statusInput;
     
     return new Task(updateInputId, inputDetail, inputStatus); 
-}
-
-function getTaskId() {
-    let inputTaskId = prompt("Input task id");
-    return inputTaskId;
-}
-
-function disableElement(ref) {
-    ref.disabled = true;
 }
 
 function enableElement(ref) {
@@ -137,8 +129,7 @@ function submitBtnClick(arr) {
         removeInputValue();
         
         setTimeout(clearActivityText, 1500);
-
-        deleteExistingListItem();
+        
         displayAllTask(arr);
     })
 }
@@ -163,50 +154,6 @@ function removeInputValue(){
     removeValue(inputId);
     removeValue(inputDetail);
     removeValue(inputStatus);
-}
-
-function refTaskContainer() {
-    const taskContainer = document.querySelector('.task-container');
-    return taskContainer;
-}
-
-function createUnorderedList() {
-    const UnorderedList = document.createElement('ul');
-    UnorderedList.setAttribute('id', 'unorder-list')
-    return UnorderedList;
-}
-
-function refUnorderedList() {
-    const UnorderedList = document.querySelector('#unorder-list');
-    return UnorderedList;
-}
-
-function createListItem() {
-    const listItem = document.createElement('li')
-    return listItem;
-}
-
-function refListItem() {
-    const listItem = document.querySelector('li');
-    return listItem;
-}
-
-function deleteExistingListItem() {
-    const arrListItem = document.querySelectorAll('li');
-    arrListItem.forEach((element) => {
-        element.remove();
-    })
-}
-
-function displayAllTask(inputArrObj) {
-    const taskContainer = refTaskContainer();
-    const UnorderedList = createUnorderedList();
-    appendElement(taskContainer, UnorderedList);
-    inputArrObj.forEach((element) => {
-        let listItem = createListItem();
-        listItem.textContent = element.id + " | " + element.detail + " | " + element.status;
-        appendElement(refUnorderedList(), listItem);
-    });
 }
 
 function deleteBtnCLick(arr) {
@@ -246,7 +193,6 @@ function deleteSubmitBtnClick(arr) {
         const idInput = refInputId();   
         let deleteInputId = getValueFromInput(idInput);
         deleteTask(deleteInputId, arr);
-        deleteExistingListItem();
         displayAllTask(arr);
         removeValue(idInput);
         setTextContent(refActivityText(), textDeleteTextSuccessfull());
@@ -280,7 +226,6 @@ function updateSubmitBtnClick(arr) {
         let updateInputId = getValueFromInput(inputId);
         let updateInputStatus = getValueFromInput(inputStatus);
         updateStatus(updateInputId, updateInputStatus, arr);
-        deleteExistingListItem();
         displayAllTask(arr);
         removeValue(refInputId());
         removeValue(refInputStatus());
