@@ -1,3 +1,5 @@
+import { setTextContent } from "../../controllers/controller.js";
+
 function refActivityContainer() {
     const activityContainer = document.querySelector('.activity-container');
     return activityContainer;
@@ -28,4 +30,13 @@ function updateStatusTextSuccessfull() {
     return textContent;
 }
 
-export {refActivityContainer, refActivityText, textCreateTask, textCreateTaskSuccessful, textDeleteTextSuccessfull, updateStatusTextSuccessfull};
+function textEmpty() {
+    let textContent = "";
+    return textContent; 
+}
+
+function clearActivityText() {
+    setTextContent(refActivityText(), textEmpty())
+}
+
+export {clearActivityText, refActivityContainer, refActivityText, textCreateTask, textCreateTaskSuccessful, textDeleteTextSuccessfull, updateStatusTextSuccessfull};

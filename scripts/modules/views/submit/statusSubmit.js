@@ -1,4 +1,15 @@
-import { setTextContent, appendElement, refSubmitContainer } from "../../../script.js";
+import { refSubmitContainer, setTextContent, appendElement } from "../../controllers/controller.js";
+
+function refInputStatus() {
+    const inputStatus = document.querySelector('#input-status');
+    return inputStatus;
+}
+
+function checkIfExistCreateStatus(element) {
+    if(element === null) {
+        createStatusSubmission();
+    }
+}
 
 function createStatusSubmission() {
     const statusInputLabel = document.createElement('label');
@@ -10,4 +21,4 @@ function createStatusSubmission() {
     appendElement(refSubmitContainer(), statusInput);
 }
 
-export {createStatusSubmission};
+export {createStatusSubmission, refInputStatus, checkIfExistCreateStatus};

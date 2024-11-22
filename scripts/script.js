@@ -1,160 +1,17 @@
 import { Task } from "./modules/models/task.js";
-import { pushToArr, updateStatus, deleteTask } from "./modules/models/tasks.js";
-import { refCreateBTn, refUpdateBtn, refDeleteBTn } from "./modules/views/button/button.js";
+import { updateStatus, deleteTask } from "./modules/models/tasks.js";
+import { refUpdateBtn, refDeleteBTn } from "./modules/views/button/button.js";
 import { refActivityContainer, refActivityText, textCreateTask, textCreateTaskSuccessful, textDeleteTextSuccessfull, updateStatusTextSuccessfull } from "./modules/views/activity/activity.js";
 import { createIdSubmission } from "./modules/views/submit/idSubmit.js";
 import { createDetailSubmission } from "./modules/views/submit/detailSubmit.js";
 import { refSubmitBtn, createSubmitBtn } from "./modules/views/submit/submitBtn.js";
 import { displayAllTask  } from "./modules/views/task/taskContainer.js";
 import { createStatusSubmission } from "./modules/views/submit/statusSubmit.js";
+import { createBtnClick } from "./modules/controllers/createController.js";
 
-function assignInput(idInput, detailInput, statusInput) {
-    let updateInputId = idInput;
-    let inputDetail = detailInput;
-    let inputStatus = statusInput;
-    
-    return new Task(updateInputId, inputDetail, inputStatus); 
-}
 
 function enableElement(ref) {
     ref.disabled = false;
-}
-
-function checkIfExistCreateInput(element) {
-    if(element === null){
-        createIdSubmission();
-    }
-}
-
-function checkIfExistCreateDetail(element) {
-    if(element === null) {
-        createDetailSubmission();
-    }
-}
-
-function checkIfExistCreateStatus(element) {
-    if(element === null) {
-        createStatusSubmission();
-    }
-}
-
-function checkIfExistCreateSubmit(element) {
-    if(element === null) {
-        createSubmitBtn();
-    }
-}
-
-function createBtnClick(arr) {
-    const createBtn = refCreateBTn();
-    createBtn.addEventListener("click", () => {
-        updateActivityText(textCreateTask());
-        let inputId = refInputId();
-        let inputDetail = refInputDetail();
-        let inputStatus = refInputStatus();
-        let submitBtn = refSubmitBtn();
-        checkIfExistCreateInput(inputId);
-        checkIfExistCreateStatus(inputStatus);
-        checkIfExistCreateDetail(inputDetail);
-        checkElementExistToDelete(submitBtn);
-        createSubmitBtn();
-        submitBtnClick(arr);
-    });
-}
-
-function updateActivityText(content) {
-    const activityContainer = refActivityContainer();
-    const activityText = refActivityText();
-    setTextContent(activityText, content);
-    appendElement(activityContainer,activityText);
-}
-
-function textEmpty() {
-    let textContent = "";
-    return textContent; 
-}
-
-export function setTextContent(element, content) {
-    element.textContent = content;
-}
-
-export function appendElement(parent, child){
-    parent.appendChild(child);
-}
-
-export function refSubmitContainer() {
-    const submitContainer = document.querySelector('.submit-container');
-    return submitContainer;
-}
-
-function refInputDetail() {
-    const inputDetail = document.querySelector('#input-detail');
-    return inputDetail;
-}
-
-function refInputId() {
-    const InputId = document.querySelector('#input-id');
-    return InputId;
-}
-
-export function setMultipleAttribute(element, attribute) {
-    for(let key in attribute){
-        element.setAttribute(key, attribute[key]);
-    }
-} 
-
-function refInputStatus() {
-    const inputStatus = document.querySelector('#input-status');
-    return inputStatus;
-}
-
-function submitBtnClick(arr) {
-    const submitBtn = refSubmitBtn();
-    submitBtn.addEventListener("click", () => {
-        let inputId = refInputId();
-        let inputDetail= refInputDetail();
-        let inputStatus = refInputStatus();
-        
-        inputId = getValueFromInput(inputId);
-        inputDetail = getValueFromInput(inputDetail);
-        inputStatus = getValueFromInput(inputStatus);
-
-        const taskObj = assignInput(inputId, inputDetail, inputStatus);
-
-        pushToArr(arr, taskObj);
-
-        setTextContent(refActivityText(), textCreateTaskSuccessful());
-
-        console.log(arr);
-        console.log(arr.length);
-
-        removeInputValue();
-        
-        setTimeout(clearActivityText, 1500);
-        
-        displayAllTask(arr);
-    })
-}
-
-function clearActivityText() {
-    setTextContent(refActivityText(), textEmpty())
-}
-
-function getValueFromInput(element) {
-    element = element.value; 
-    return element;
-}
-
-function removeValue(element){
-    element.value = "";
-}
-
-function removeInputValue(){
-    let inputId = refInputId();
-    let inputDetail= refInputDetail();
-    let inputStatus = refInputStatus();
-    removeValue(inputId);
-    removeValue(inputDetail);
-    removeValue(inputStatus);
 }
 
 function deleteBtnCLick(arr) {
@@ -233,12 +90,6 @@ function updateSubmitBtnClick(arr) {
         setTextContent(refActivityText(), updateStatusTextSuccessfull());
         setTimeout(clearActivityText, 1500);
     })
-}
-
-function checkElementExistToDelete(element) {
-    if(element !== null) {
-        element.remove();
-    }
 }
 
 function main() {

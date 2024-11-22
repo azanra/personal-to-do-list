@@ -1,4 +1,4 @@
-import { setMultipleAttribute, appendElement, refSubmitContainer } from "../../../script.js";
+import { setMultipleAttribute, appendElement, refSubmitContainer } from "../../controllers/controller.js";
 
 function refSubmitBtn() {
     const submitBtn = document.querySelector('#submit-btn');

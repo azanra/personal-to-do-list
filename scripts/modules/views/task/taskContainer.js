@@ -1,4 +1,4 @@
-import { appendElement,  } from "../../../script.js";
+import { appendElement } from "../../controllers/controller.js";
 
 function refTaskContainer() {
     const taskContainer = document.querySelector('.task-container');
