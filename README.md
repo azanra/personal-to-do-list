@@ -18,7 +18,7 @@ object to array of object.
 - Use a class to construct the task object and method
 that the task object used. As of right now the code is
 really hard to navigate and understand.
-~~- Don't put all of the script in a single file.~~
+-~~- Don't put all of the script in a single file.~~
 
 (Refactor) Organizing the code turns out much harder than it 
 looks,Object oriented programming making it much easier to 
