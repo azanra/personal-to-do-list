@@ -5,6 +5,11 @@ function refInputDetail() {
     return inputDetail;
 }
 
+function refDetailLabel() {
+    const detailLabel = document.querySelector('#detail-label');
+    return detailLabel;
+}
+
 function checkIfExistCreateDetail(element) {
     if(element === null) {
         createDetailSubmission();
@@ -21,4 +26,4 @@ function createDetailSubmission() {
     appendElement(refSubmitContainer(), detailInput);
 }
 
-export {createDetailSubmission, refInputDetail, checkIfExistCreateDetail};
+export {createDetailSubmission, refInputDetail, refDetailLabel, checkIfExistCreateDetail};

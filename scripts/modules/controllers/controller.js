@@ -63,4 +63,4 @@ function removeValue(element){
 }
 
 
-export {removeInputValue, assignInput, getValueFromInput, checkElementExistToDelete, setTextContent, appendElement, updateActivityText, refSubmitContainer, setMultipleAttribute};
+export {removeValue, removeInputValue, assignInput, getValueFromInput, checkElementExistToDelete, setTextContent, appendElement, updateActivityText, refSubmitContainer, setMultipleAttribute};

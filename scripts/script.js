@@ -8,7 +8,7 @@ import { refSubmitBtn, createSubmitBtn } from "./modules/views/submit/submitBtn.
 import { displayAllTask  } from "./modules/views/task/taskContainer.js";
 import { createStatusSubmission } from "./modules/views/submit/statusSubmit.js";
 import { createBtnClick } from "./modules/controllers/createController.js";
-
+import { updateBtnClick } from "./modules/controllers/updateController.js";
 
 function enableElement(ref) {
     ref.disabled = false;
@@ -35,16 +35,6 @@ function deleteBtnCLick(arr) {
     })
 }
 
-function refDetailLabel() {
-    const detailLabel = document.querySelector('#detail-label');
-    return detailLabel;
-}
-
-function refStatusLabel() {
-    const statusLabel = document.querySelector('#status-label');
-    return statusLabel;
-}
-
 function deleteSubmitBtnClick(arr) {
     const submitBtn = refSubmitBtn();
     submitBtn.addEventListener("click", () => {
@@ -58,39 +48,6 @@ function deleteSubmitBtnClick(arr) {
     })
 }
 
-function updateBtnClick(arr) {
-    const updateBtn = refUpdateBtn();
-    updateBtn.addEventListener("click", () => {
-        const detailInput = refInputDetail();
-        const detailInputLabel = refDetailLabel()
-        checkElementExistToDelete(detailInput);
-        checkElementExistToDelete(detailInputLabel);
-        const submitBtn = refSubmitBtn();
-        checkElementExistToDelete(refInputStatus());
-        checkElementExistToDelete(refStatusLabel());
-        createStatusSubmission();
-        setTextContent(refActivityText(), "Update task");
-        checkElementExistToDelete(submitBtn);
-        createSubmitBtn();
-        updateSubmitBtnClick(arr);
-    })
-}
-
-function updateSubmitBtnClick(arr) {
-    const submitBtn = refSubmitBtn();
-    submitBtn.addEventListener("click", () => {
-        const inputId = refInputId();
-        const inputStatus = refInputStatus();
-        let updateInputId = getValueFromInput(inputId);
-        let updateInputStatus = getValueFromInput(inputStatus);
-        updateStatus(updateInputId, updateInputStatus, arr);
-        displayAllTask(arr);
-        removeValue(refInputId());
-        removeValue(refInputStatus());
-        setTextContent(refActivityText(), updateStatusTextSuccessfull());
-        setTimeout(clearActivityText, 1500);
-    })
-}
 
 function main() {
     let taskArrObj = []

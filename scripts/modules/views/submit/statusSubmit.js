@@ -5,6 +5,11 @@ function refInputStatus() {
     return inputStatus;
 }
 
+function refStatusLabel() {
+    const statusLabel = document.querySelector('#status-label');
+    return statusLabel;
+}
+
 function checkIfExistCreateStatus(element) {
     if(element === null) {
         createStatusSubmission();
@@ -21,4 +26,4 @@ function createStatusSubmission() {
     appendElement(refSubmitContainer(), statusInput);
 }
 
-export {createStatusSubmission, refInputStatus, checkIfExistCreateStatus};
+export {refStatusLabel, createStatusSubmission, refInputStatus, checkIfExistCreateStatus};
