@@ -53,4 +53,4 @@ function submitBtnClick(arr) {
     })
 }
 
-export {createBtnClick};
+export {createBtnClick, submitBtnClick};

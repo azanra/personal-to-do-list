@@ -62,5 +62,8 @@ function removeValue(element){
     element.value = "";
 }
 
+function enableElement(ref) {
+    ref.disabled = false;
+}
 
-export {removeValue, removeInputValue, assignInput, getValueFromInput, checkElementExistToDelete, setTextContent, appendElement, updateActivityText, refSubmitContainer, setMultipleAttribute};
+export {enableElement, removeValue, removeInputValue, assignInput, getValueFromInput, checkElementExistToDelete, setTextContent, appendElement, updateActivityText, refSubmitContainer, setMultipleAttribute};
